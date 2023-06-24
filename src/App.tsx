@@ -1,11 +1,10 @@
-import Auth from "./pages/Auth";
 import {useAuth} from "./hooks/useAuth";
-import Welcome from "./pages/Welcome";
 import AxiosInterceptorAccess from "./components/Utils/AxiosInterceptorAccess";
 import {logout, setAuth} from "./store/account/accountSlice";
 import {AccountDTO} from "./store/account/types";
 import useLS from "./hooks/useLS";
 import {useAppDispatch} from "./store/hooks";
+import {Outlet} from "react-router";
 
 function App() {
     const isAuth = useAuth();
@@ -26,10 +25,9 @@ function App() {
 
     return (
         <>
-
             <AxiosInterceptorAccess/>
 
-            {isAuth ? <Welcome/> : <Auth/>}
+            <Outlet />
         </>
     )
 }
