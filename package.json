@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "tsc -p ./tsconfig.json && eslint 'src/**/*.{ts,tsx}' --quiet --cache --fix",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "dependencies": {
     "react": "^18.2.0",
