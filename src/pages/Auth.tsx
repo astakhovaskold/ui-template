@@ -10,9 +10,12 @@ const {Item} = Form;
 const Auth = memo((): JSX.Element | null => {
     const dispatch = useAppDispatch();
 
-    const onFinish = useCallback((values: LoginData) => {
-        dispatch(auth(values));
-    }, []);
+    const onFinish = useCallback(
+        (values: LoginData) => {
+            dispatch(auth(values));
+        },
+        [dispatch],
+    );
 
     return (
         <Row>
