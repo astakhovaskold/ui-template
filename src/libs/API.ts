@@ -27,7 +27,7 @@ export default class API {
 
     // app
     static auth(): string;
-    static auth(chunk: 'login' | 'logout'): string;
+    static auth(chunk: 'login' | 'logout' | 'refresh-token' | 'profile'): string;
     static auth(...chunks: chunks): string {
         const prefix = '/auth';
         return `${this.api}${prefix}${this.joinChunks(...chunks)}`;

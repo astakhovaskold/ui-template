@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import Auth from "./pages/Auth";
+import {useAuth} from "./hooks/useAuth";
+import Welcome from "./pages/Welcome";
+import AxiosInterceptorAccess from "./components/Utils/AxiosInterceptorAccess";
+import {logout, setAuth} from "./store/account/accountSlice";
+import {AccountDTO} from "./store/account/types";
+import useLS from "./hooks/useLS";
+import {useAppDispatch} from "./store/hooks";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const isAuth = useAuth();
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    const dispatch = useAppDispatch();
+
+    useLS<AccountDTO>('account', account => {
+        if (account) {
+            dispatch(setAuth(account));
+        } else {
+            dispatch(
+                logout({
+                    quiet: true,
+                }),
+            );
+        }
+    });
+
+    return (
+        <>
+
+            <AxiosInterceptorAccess/>
+
+            {isAuth ? <Welcome/> : <Auth/>}
+        </>
+    )
 }
 
 export default App

@@ -21,22 +21,19 @@ export default defineConfig(({mode}: ConfigEnv) => {
     plugins: [react()],
     server: {
       port: +env.PORT || +env.VITE_PORT || 3000,
-      proxy: env.VITE_API_URL ? {
-        '/rest': {
-          target: env.VITE_API_URL || '',
+      proxy: {
+        '/api/v1': {
+          target: 'https://api.escuelajs.co/api/v1',
           changeOrigin: true,
           secure: false,
-          rewrite: path => path.replace('/rest', ''),
+          rewrite: path => path.replace('/api/v1', ''),
         },
-      } : {}
+      }
     },
     build: {
       outDir: './build',
       minify: true,
       reportCompressedSize: true,
-    },
-    esbuild: {
-      jsxInject: "import React from 'react'",
     },
   };
 });
