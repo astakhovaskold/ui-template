@@ -1,6 +1,8 @@
 import {memo} from 'react';
 import {useAccount} from "../hooks/useAccount";
 import ExitButton from "../components/ExitButton";
+import {Container} from "../components/Presentation/containers";
+import {Space} from "antd";
 
 const Welcome = memo((): JSX.Element | null => {
     const {account} = useAccount();
@@ -10,11 +12,13 @@ const Welcome = memo((): JSX.Element | null => {
     const {first_name} = account.user;
 
     return (
-        <>
-            <h1>Welcome, {first_name}</h1>
+        <Container>
+            <Space direction="vertical">
+                <h1>Welcome, {first_name}</h1>
 
-            <ExitButton />
-        </>
+                <ExitButton />
+            </Space>
+        </Container>
     );
 });
 
