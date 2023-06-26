@@ -1,6 +1,6 @@
 import {memo} from 'react';
 import {useAccount} from "../hooks/useAccount";
-import LogoutButton from "../components/LogoutButton";
+import ExitButton from "../components/ExitButton";
 
 const Welcome = memo((): JSX.Element | null => {
     const {account} = useAccount();
@@ -13,7 +13,7 @@ const Welcome = memo((): JSX.Element | null => {
         <>
             <h1>Welcome, {first_name}</h1>
 
-            <LogoutButton />
+            <ExitButton />
         </>
     );
 });

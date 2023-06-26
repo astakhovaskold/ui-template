@@ -1,13 +1,15 @@
 import {memo} from 'react';
 import {Link} from "react-router-dom";
+import {Button, Result} from "antd";
 
 const Unauthorized = memo((): JSX.Element | null => {
     return (
-        <section>
-            <h1>Error 401. User doesn't authorized</h1>
-
-            <Link to="/">Home</Link>
-        </section>
+        <Result
+            status="403"
+            title="403"
+            subTitle="Sorry, you are not authorized to access this page."
+            extra={<Button type="primary"><Link to="/">Back Home</Link></Button>}
+        />
     );
 });
 

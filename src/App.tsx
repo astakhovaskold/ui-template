@@ -1,14 +1,12 @@
-import {useAuth} from "./hooks/useAuth";
 import AxiosInterceptorAccess from "./components/Utils/AxiosInterceptorAccess";
 import {logout, setAuth} from "./store/account/accountSlice";
 import {AccountDTO} from "./store/account/types";
 import useLS from "./hooks/useLS";
 import {useAppDispatch} from "./store/hooks";
 import {Outlet} from "react-router";
+import {memo} from "react";
 
-function App() {
-    const isAuth = useAuth();
-
+const App = memo((): JSX.Element | null => {
     const dispatch = useAppDispatch();
 
     useLS<AccountDTO>('account', account => {
@@ -30,6 +28,6 @@ function App() {
             <Outlet />
         </>
     )
-}
+})
 
 export default App

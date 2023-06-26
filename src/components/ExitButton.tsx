@@ -1,17 +1,18 @@
 import {memo, MouseEventHandler, useCallback} from 'react';
 import {logout} from "../store/account/accountSlice";
 import {useAppDispatch} from "../store/hooks";
+import {Button} from "antd";
 
-const LogoutButton = memo((): JSX.Element | null => {
+const ExitButton = memo((): JSX.Element | null => {
     const dispatch = useAppDispatch();
 
-    const onExit = useCallback<MouseEventHandler<HTMLButtonElement>>(() => {
+    const onExit = useCallback(() => {
         dispatch(logout({quiet: true}));
     }, []);
 
     return (
-        <button type="button" onClick={onExit}>Logout</button>
+        <Button danger onClick={onExit}>Logout</Button>
     );
 });
 
-export default LogoutButton;
+export default ExitButton;

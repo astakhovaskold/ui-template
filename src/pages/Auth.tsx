@@ -1,31 +1,34 @@
-import {FormEventHandler, memo, useCallback, useRef} from 'react';
+import {memo, useCallback} from 'react';
 import {useAppDispatch} from "../store/hooks";
 import {auth} from "../store/account/accountSlice";
 import {LoginData} from "../store/account/types";
+import {Button, Form, Input} from "antd";
+
+const {Item} = Form;
 
 const Auth = memo((): JSX.Element | null => {
-    const email = useRef<HTMLInputElement | null>(null);
-    const password = useRef<HTMLInputElement | null>(null);
-
     const dispatch = useAppDispatch();
 
-    const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>((e) => {
-        e.preventDefault();
-
-        const payload: LoginData = {email: email.current?.value || '', password: password.current?.value || ''};
-
-        dispatch(auth(payload));
+    const onFinish = useCallback((values: LoginData) => {
+        dispatch(auth(values));
     }, []);
 
     return (
-        <form onSubmit={onSubmit} style={{marginBottom: 20, display: 'flex', flexDirection: 'column', gap: 8}}>
-            <h1>Sign In</h1>
+        <section style={{maxWidth: 600, margin: '0 auto'}}>
+            <Form onFinish={onFinish} layout="vertical">
+                <h1>Sign In</h1>
 
-            <input type="email" name="email" placeholder="E-mail" ref={email} />
-            <input type="password" name="password" placeholder="Password" ref={password} />
+                <Item label="E-mail" name="email">
+                    <Input />
+                </Item>
 
-            <button>Login</button>
-        </form>
+                <Item label="Password" name="password">
+                    <Input.Password autoComplete="current-password" />
+                </Item>
+
+                <Button type="primary" htmlType="submit">Login</Button>
+            </Form>
+        </section>
     );
 });
 
