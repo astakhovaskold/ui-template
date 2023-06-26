@@ -1,4 +1,4 @@
-import {Common} from "../../typings/types";
+import {Common} from '../../typings/common';
 
 export const enum TYPES {
     LOGIN = 'account/login',

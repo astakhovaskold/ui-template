@@ -1,12 +1,12 @@
-
+import {nanoid, PayloadAction} from '@reduxjs/toolkit';
 import axios, {AxiosResponse} from 'axios';
 import {SagaIterator} from 'redux-saga';
 import {call, Effect, putResolve, takeEvery, takeLeading} from 'redux-saga/effects';
 
 import API from '../../libs/API';
-import {AccountDTO, LoginData, LogoutData, TYPES} from "./types";
-import {login} from "./accountSlice";
-import {nanoid, PayloadAction} from "@reduxjs/toolkit";
+
+import {login} from './accountSlice';
+import {AccountDTO, LoginData, LogoutData, TYPES} from './types';
 
 function* setAuthData(account: AccountDTO) {
     axios.defaults.headers.common.Authorization = `Bearer ${account.access_token}`;
@@ -26,8 +26,8 @@ function* requestLogin(action: PayloadAction<LoginData>): SagaIterator {
                 first_name: 'John',
                 last_name: 'Doe',
                 email: 'johndoe@mail.com',
-            }
-        }
+            },
+        };
 
         yield* setAuthData(account);
     } catch (e) {

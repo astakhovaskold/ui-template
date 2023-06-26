@@ -1,6 +1,7 @@
 import {memo, useEffect, useMemo} from 'react';
 import {Outlet, useLocation, useNavigate, useSearchParams} from 'react-router-dom';
-import {useAuth} from "../hooks/useAuth";
+
+import {useAuth} from '../hooks/useAuth';
 
 interface RouteGuardProps {
     restrictedWithAuth?: boolean;

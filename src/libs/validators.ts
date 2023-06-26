@@ -1,6 +1,3 @@
-/**
- * Created by ASTAKHOV A.A. on 22.02.2023
- */
 import {Rule} from 'antd/es/form';
 
 import {PasswordData} from '../typings/common';

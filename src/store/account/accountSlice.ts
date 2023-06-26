@@ -1,7 +1,8 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createAction, createSlice, PayloadAction} from '@reduxjs/toolkit';
+
+import axios from 'axios';
 
 import {AccountDTO, AccountState, LoginData, LogoutData} from './types';
-import axios from "axios";
 
 export function getAccountFromLS(): AccountDTO | undefined {
     const storeName = `${_UNIQUE_STATE}_account`;
@@ -22,27 +23,27 @@ const initialState: AccountState = {
     loggedOut: false,
 };
 
+export const auth = createAction<LoginData>('account/auth');
+export const setAuth = createAction<AccountDTO>('account/setAuth');
+export const logout = createAction<LogoutData>('account/logout');
+
 const accountSlice = createSlice({
     name: 'account',
     initialState,
     reducers: {
-        auth(state, action: PayloadAction<LoginData>) {
-            return state;
-        },
-        setAuth(state, action: PayloadAction<AccountDTO>) {
-            return state;
-        },
         login(state, action: PayloadAction<AccountDTO>) {
             state.account = action.payload;
             state.loggedOut = false;
         },
-        logout(state, action: PayloadAction<LogoutData>) {
+    },
+    extraReducers: builder => {
+        builder.addCase(logout, state => {
             state.account = undefined;
             state.loggedOut = true;
-        },
+        });
     },
 });
 
-export const {login, logout, auth, setAuth} = accountSlice.actions;
+export const {login} = accountSlice.actions;
 
 export default accountSlice.reducer;

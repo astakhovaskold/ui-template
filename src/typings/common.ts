@@ -7,3 +7,8 @@ export interface PaginationResult<T> {
     totalItems: number;
     totalElements: number;
 }
+
+export interface PasswordData {
+    password: string;
+    confirm_password: string;
+}

@@ -1,8 +1,9 @@
+import {Space} from 'antd';
 import {memo} from 'react';
-import {useAccount} from "../hooks/useAccount";
-import ExitButton from "../components/ExitButton";
-import {Container} from "../components/Presentation/containers";
-import {Space} from "antd";
+
+import ExitButton from '../components/ExitButton';
+import {Container} from '../components/Presentation/containers';
+import {useAccount} from '../hooks/useAccount';
 
 const Welcome = memo((): JSX.Element | null => {
     const {account} = useAccount();

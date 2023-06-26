@@ -1,25 +1,26 @@
-import AxiosInterceptorAccess from "./components/Utils/AxiosInterceptorAccess";
-import {logout, setAuth} from "./store/account/accountSlice";
-import {AccountDTO} from "./store/account/types";
-import useLS from "./hooks/useLS";
-import {useAppDispatch} from "./store/hooks";
-import {Outlet} from "react-router";
-import {memo} from "react";
+import {css} from '@emotion/css';
+import {Global} from '@emotion/react';
+import {Layout} from 'antd';
+import {memo} from 'react';
+import {Outlet} from 'react-router';
 
-import {useAuth} from "./hooks/useAuth";
-import {Layout} from "antd";
-import {css} from "@emotion/css";
-import {Global} from "@emotion/react";
-import {globalStyles} from "./styles/global";
+import AxiosInterceptorAccess from './components/Utils/AxiosInterceptorAccess';
+import {useAuth} from './hooks/useAuth';
+import useLS from './hooks/useLS';
+import {logout, setAuth} from './store/account/accountSlice';
+import {AccountDTO} from './store/account/types';
+import {useAppDispatch} from './store/hooks';
+
+import {globalStyles} from './styles/global';
 
 const {Header, Content} = Layout;
 
 const headerCss = css`
-  height: 80px;
+    height: 80px;
 `;
 
 const contentCss = css`
-  padding: 16px 0;
+    padding: 16px 0;
 `;
 
 const App = memo((): JSX.Element | null => {
@@ -43,15 +44,15 @@ const App = memo((): JSX.Element | null => {
         <>
             <Global styles={globalStyles}></Global>
 
-            <AxiosInterceptorAccess/>
+            <AxiosInterceptorAccess />
 
-            {isAuth && (<Header className={headerCss} />)}
+            {isAuth && <Header className={headerCss} />}
 
             <Content className={contentCss}>
                 <Outlet />
             </Content>
         </>
-    )
-})
+    );
+});
 
-export default App
+export default App;

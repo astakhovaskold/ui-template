@@ -1,8 +1,9 @@
+import {Button, Col, Form, Input, Row} from 'antd';
 import {memo, useCallback} from 'react';
-import {useAppDispatch} from "../store/hooks";
-import {auth} from "../store/account/accountSlice";
-import {LoginData} from "../store/account/types";
-import {Button, Col, Form, Input, Row} from "antd";
+
+import {auth} from '../store/account/accountSlice';
+import {LoginData} from '../store/account/types';
+import {useAppDispatch} from '../store/hooks';
 
 const {Item} = Form;
 
@@ -27,7 +28,9 @@ const Auth = memo((): JSX.Element | null => {
                         <Input.Password autoComplete="current-password" />
                     </Item>
 
-                    <Button type="primary" htmlType="submit">Login</Button>
+                    <Button type="primary" htmlType="submit">
+                        Login
+                    </Button>
                 </Form>
             </Col>
         </Row>
